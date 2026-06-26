@@ -5,9 +5,14 @@ import SectionLabel from '../components/SectionLabel.astro';
 import MiniBars from '../components/MiniBars.astro';
 import PhotoWall from '../components/PhotoWall.astro';
 import Stats from '../components/Stats.astro';
+import PastEvents from '../components/PastEvents.astro';
+import Partners from '../components/Partners.astro';
 import { getSignupUrl } from '../config';
 
 import savannaGrassland from '../assets/photos/savanna-grassland.jpg';
+import cafeViewArusha from '../assets/photos/cafe-view-arusha.jpg';
+import foodArusha from '../assets/photos/food-arusha.jpg';
+import teachingJapaneseClass from '../assets/photos/teaching-japanese-class.jpg';
 
 const signup = getSignupUrl('en');
 
@@ -147,6 +152,39 @@ const faqLd = {
       </p>
       <div class="actions center">
         <a href="/connection-party" class="btn btn-solid">See details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past events -->
+  <section class="section section-white reveal">
+    <div class="wrap">
+      <SectionLabel eyebrow="Past Events" heading="Where we've been." center />
+      <div style="margin-top:2.2rem;">
+        <PastEvents
+          items={[
+            { image: cafeViewArusha, name: 'Connection Party', date: '2026.04.19' },
+            { image: foodArusha, name: 'Culture Night', date: '2026.02.14' },
+            { image: teachingJapaneseClass, name: 'Language Meetup', date: '2025.12.07' },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="section section-sand reveal">
+    <div class="wrap">
+      <SectionLabel eyebrow="Partners" heading="Building it together." center />
+      <div style="margin-top:2.2rem;">
+        <Partners
+          items={[
+            { logo: '/logo-placeholder.svg', name: 'Partner One' },
+            { logo: '/logo-placeholder.svg', name: 'Partner Two' },
+            { logo: '/logo-placeholder.svg', name: 'Partner Three' },
+            { logo: '/logo-placeholder.svg', name: 'Partner Four' },
+          ]}
+        />
       </div>
     </div>
   </section>
