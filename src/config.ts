@@ -21,8 +21,8 @@ export const siteConfig = {
   // target ("Get an invite" / 案内を受け取る) and the email/invite-list form.
   // mailto is intentionally NOT used (unreliable).
   signupUrl: {
-    en: 'https://docs.google.com/forms/d/e/1FAIpQLSdaE_OQM4PqagXJmFq7h6aPyVJ3DqKslfn9x4p6GdJO0aYnhA/viewform',
-    ja: 'https://docs.google.com/forms/d/e/1FAIpQLSdSHuDQcRHn8v7K_DxnDpDAttwKxaW8awf1X4xWsJYYgguNjg/viewform',
+    en: 'https://docs.google.com/forms/d/e/1FAIpQLSdSHuDQcRHn8v7K_DxnDpDAttwKxaW8awf1X4xWsJYYgguNjg/viewform',
+    ja: 'https://docs.google.com/forms/d/e/1FAIpQLSdaE_OQM4PqagXJmFq7h6aPyVJ3DqKslfn9x4p6GdJO0aYnhA/viewform',
   },
 
   // Google Search Console verification token (the meta-tag method).
