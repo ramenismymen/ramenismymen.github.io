@@ -2,7 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { ui } from '../i18n/ui';
-import { siteConfig, getSignupUrl } from '../config';
+import { siteConfig } from '../config';
 import '../styles/global.css';
 
 interface Props {
@@ -91,9 +91,6 @@ const graphLd = {
   '@context': 'https://schema.org',
   '@graph': [orgLd, websiteLd, webPageLd, ...extraLd],
 };
-
-const signup = getSignupUrl(locale);
-const signupExternal = signup.startsWith('http');
 ---
 
 <html lang={locale}>
@@ -150,12 +147,6 @@ const signupExternal = signup.startsWith('http');
       <slot />
     </main>
     <Footer />
-
-    <a
-      class="mobile-cta"
-      href={signup}
-      {...(signupExternal ? { target: '_blank', rel: 'noopener' } : {})}
-    >{t.cta}</a>
 
     <script is:inline>
       const revealEls = document.querySelectorAll('.reveal');
@@ -222,39 +213,5 @@ const signupExternal = signup.startsWith('http');
         }
       }
     </script>
-
-    <style>
-      .mobile-cta {
-        display: none;
-      }
-      @media (max-width: 700px) {
-        .mobile-cta {
-          position: fixed;
-          left: 1rem;
-          right: 1rem;
-          bottom: 1rem;
-          z-index: 45;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.95rem;
-          border-radius: 999px;
-          background: var(--gold);
-          color: #fff;
-          font-family: var(--font-label);
-          font-weight: 600;
-          font-size: 0.85rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          box-shadow: 0 10px 30px -8px rgba(30, 43, 38, 0.55);
-        }
-        .mobile-cta:hover {
-          color: #fff;
-        }
-        :global(body) {
-          padding-bottom: 4.75rem;
-        }
-      }
-    </style>
   </body>
 </html>
