@@ -1,43 +1,54 @@
 # Deploy
 
 **Live:** https://ramenismymen.github.io/
-**Repo (published site):** https://github.com/ramenismymen/ramenismymen.github.io
-(That repo holds the **built** site, not the source. The source is this folder.)
+**Repo (source + auto-deploy):** https://github.com/ramenismymen/ramenismymen.github.io
 
-## How it's deployed
+This repo now holds the **source code** (Astro). Every push to the `main` branch
+triggers a GitHub Actions workflow that builds the site and publishes it to GitHub
+Pages automatically. **You no longer build or deploy by hand.**
 
-GitHub Pages serves the **user site** `ramenismymen.github.io` from the `main`
-branch root. We publish the contents of `dist/` (the built site) there. We use
-this manual method instead of GitHub Actions because the local `gh` token doesn't
-have the `workflow` scope needed to push a workflow file.
+## How it works
 
-`public/.nojekyll` makes Pages serve Astro's `_astro/` folder — don't delete it.
+- Source lives on `main`.
+- `.github/workflows/deploy.yml` runs on every push to `main`:
+  builds with the Astro action (Node 22), then deploys via `actions/deploy-pages`.
+- GitHub Pages **Source** is set to **GitHub Actions** (Settings → Pages).
+- Goes live ~1–2 min after the Action finishes (green check in the **Actions** tab).
 
-## Redeploy after editing (copy-paste)
+## Editing the site (no PC / no terminal needed)
 
-From this project folder:
+**Small text change, right in the browser:**
+1. Open the repo on GitHub and find the file (see the map below).
+2. Click the ✏️ pencil → edit → **Commit changes**.
+3. Wait ~1–2 min; the **Actions** tab shows progress, then it's live.
 
-```bash
-npm run build
-cd dist
-git init -b main -q
-git add -A
-git commit -qm "Deploy"
-git push -f https://github.com/ramenismymen/ramenismymen.github.io.git main
-cd ..
-```
+**Bigger edits with a full editor in the browser:**
+- Press `.` (period) on the repo to open **github.dev** (VS Code in the browser), or
+- Open a **Codespace** (Code ▸ Codespaces) for a full environment with live preview
+  (`npm run dev`).
 
-It goes live in ~1 minute. (Each deploy replaces the published site — that's fine.)
+### Where the content lives (edit these, NOT the built HTML)
 
-## Switching to automatic deploys (optional, later)
+| What you want to change | File |
+|---|---|
+| Home page | `src/pages/index.astro` (JA: `src/pages/ja/index.astro`) |
+| Other pages | `src/pages/<name>.astro` — `programs`, `events`, `members`, `get-involved`, `contact`, `connection-party` |
+| Japanese mirror | `src/pages/ja/<name>.astro` (note: `members` is English-only — no JA page) |
+| Shared header/footer/hero etc. | `src/components/*.astro` |
+| Nav / footer wording | `src/i18n/ui.ts` |
+| Sign-up form links, founder, socials, GSC token | `src/config.ts` |
+| Design (colors, spacing, fonts) | `src/styles/global.css` |
 
-To have it rebuild & deploy on every push instead:
-1. Re-authorize the CLI with workflow permission: `gh auth refresh -s workflow`
-2. Push this source repo (incl. `.github/workflows/deploy.yml`) to a GitHub repo.
-3. In that repo: Settings → Pages → Source → **GitHub Actions**.
+For SEO, new pages, or design changes, ask Claude — it edits the same source.
+
+## If a deploy fails
+
+Open the **Actions** tab → click the failed run → read the red step. Common causes:
+the build errors out (fix the source and push again). The site keeps serving the
+last good version until a new deploy succeeds.
 
 ## Before changing the domain
 
-If you ever use a custom domain or a different repo, update `site` in
-`astro.config.mjs` and the URL in `public/robots.txt`, then rebuild — canonical
-URLs, Open Graph, and the sitemap all derive from `site`.
+If you ever use a custom domain, update `site` in `astro.config.mjs` and the URL in
+`public/robots.txt`, then push — canonical URLs, Open Graph, and the sitemap all
+derive from `site`. Keep `public/.nojekyll`.

@@ -32,11 +32,13 @@ issues. `PHOTOS.md` covers images/logo.
 
 ## Deployment
 **Live at https://ramenismymen.github.io/** (GitHub Pages user site, account
-`ramenismymen`). The built `dist/` is published to the `main` branch of the
-`ramenismymen.github.io` repo (manual — the `gh` token lacks `workflow` scope for
-Actions). See **`DEPLOY.md`** for the one-shot redeploy command. `public/.nojekyll`
-must stay. `site` in `astro.config.mjs` is set to that URL; canonical/OG/sitemap
-derive from it.
+`ramenismymen`). **Auto-deploy:** the `ramenismymen.github.io` repo holds the
+**source**; every push to `main` runs `.github/workflows/deploy.yml` (Astro action,
+Node 22) which builds and publishes via `actions/deploy-pages`. Pages **Source** =
+**GitHub Actions**. So: commit/push to `main` → live in ~1–2 min. Do NOT hand-build
+or force-push `dist/` anymore (it would overwrite the source). See **`DEPLOY.md`**.
+`public/.nojekyll` stays. `site` in `astro.config.mjs` is that URL; canonical/OG/
+sitemap derive from it.
 
 ## Dev
 `npm run dev` (port 4321) · `npm run build` · `npm run preview`.
