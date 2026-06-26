@@ -1,22 +1,15 @@
-## Development
+# Agent notes
 
-When starting the dev server, use background mode:
+See **`CLAUDE.md`** for the project brief and conventions, and **`SPEC.md`** for
+full architecture, decisions, placeholders, and known issues. `PHOTOS.md` covers
+images and the logo.
 
-```
-astro dev --background
-```
-
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
-
-## Documentation
-
-Full documentation: https://docs.astro.build
-
-Consult these guides before working on related tasks:
-
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+Quick reminders:
+- It's about the community, not the founder. Short, plain, natural copy (incl.
+  natural Japanese — avoid choppy fragments).
+- No Tailwind. Plain CSS + tokens in `src/styles/global.css`. Images always
+  `object-fit: cover` in a fixed-aspect `.ratio` box.
+- Shared settings in `src/config.ts`. Primary CTA → `signupUrl` (never mailto).
+- ⚠️ Set the real domain in `astro.config.mjs` (`site`) + `public/robots.txt`
+  before deploying — SEO (canonical/OG/sitemap) depends on it.
+- `npm run dev` / `npm run build` / `npm run preview`.

@@ -1,22 +1,43 @@
-## Development
+# Japan-Africa Young Professionals (JAYP) — site
 
-When starting the dev server, use background mode:
+Bilingual (EN / 日本語) Astro static site for **Japan-Africa Young Professionals /
+Japan-Africa Young Professionals** — a community connecting young people in
+Japan with the African community living in Japan, via networking, culture, and
+sport. Pre-launch (founded 2026; first event "Youth Japan–Africa Connection
+Party", winter 2026). Deploys to GitHub Pages.
 
-```
-astro dev --background
-```
+**Read `SPEC.md` first** — full architecture, decisions, placeholders, and known
+issues. `PHOTOS.md` covers images/logo.
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+## Voice & framing (important)
+- It's about the **community**, not the founder. Don't center anyone's personal
+  story. (Founder appears only as one entry on the Members page.)
+- Audience is broad: **all African countries**, and anyone in Japan into African
+  culture/language/business/development. **Not students-only** — include young
+  professionals, grads, entrepreneurs, African residents in Japan.
+- Copy = **short, plain, natural**. Avoid marketing-ish / "AI" lines. Write
+  natural Japanese (flowing sentences, not choppy 「〜。〜でも、〜。」 fragments).
 
-## Documentation
+## Conventions
+- No Tailwind / no UI kit. Plain CSS + tokens in `src/styles/global.css`.
+- Fonts: Cinzel (labels), Noto Serif JP (headings), Noto Sans JP (body).
+- Images **always** `object-fit: cover` inside a fixed-aspect `.ratio` box — never
+  let portrait/landscape distort.
+- EN pages at root, JA mirrored under `/ja` with identical slugs.
+- About stays in the nav, but links back to Home. There is no standalone About page.
+- Body copy lives in each page file; only nav/footer chrome is in `src/i18n/ui.ts`.
+- Shared, editable settings (sign-up link, socials, founder) live in `src/config.ts`.
+- Primary CTA is "Get an invite / 案内を受け取る" → `siteConfig.signupUrl`.
+  **Do not use mailto for the primary CTA** (founder reports it doesn't work).
 
-Full documentation: https://docs.astro.build
+## Deployment
+**Live at https://ramenismymen.github.io/** (GitHub Pages user site, account
+`ramenismymen`). The built `dist/` is published to the `main` branch of the
+`ramenismymen.github.io` repo (manual — the `gh` token lacks `workflow` scope for
+Actions). See **`DEPLOY.md`** for the one-shot redeploy command. `public/.nojekyll`
+must stay. `site` in `astro.config.mjs` is set to that URL; canonical/OG/sitemap
+derive from it.
 
-Consult these guides before working on related tasks:
-
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+## Dev
+`npm run dev` (port 4321) · `npm run build` · `npm run preview`.
+Dev server background mode: `astro dev` then `astro dev stop` / `status` / `logs`.
