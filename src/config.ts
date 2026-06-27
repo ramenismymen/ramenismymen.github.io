@@ -43,6 +43,7 @@ export const siteConfig = {
     blurb: 'Builder — robotics, AI & linguistics.',
     blurbJa: 'ロボティクス・AI・言語の作り手。',
     url: 'https://ryumacv.neocities.org/',
+    photo: '/members/ryuma.jpg',
   },
 } as const;
 

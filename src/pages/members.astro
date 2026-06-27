@@ -29,7 +29,9 @@ const f = siteConfig.founder;
   <section class="section section-sand reveal" style="padding-top:0;">
     <div class="wrap member-grid">
       <article class="member">
-        <span class="avatar">{f.name.split(' ').map((w) => w[0]).join('')}</span>
+        {f.photo
+          ? <img class="avatar avatar-photo" src={f.photo} alt={f.name} width="64" height="64" loading="lazy" />
+          : <span class="avatar">{f.name.split(' ').map((w) => w[0]).join('')}</span>}
         <h3>{f.name}</h3>
         <p class="role">Founder</p>
         <p class="bio">{f.blurb}</p>
@@ -95,6 +97,12 @@ const f = siteConfig.founder;
     background: var(--sand-deep);
     color: var(--gold-dark);
     font-size: 1.6rem;
+  }
+  .avatar-photo {
+    object-fit: cover;
+    background: #fff;
+    border: 2px solid var(--gold);
+    padding: 0;
   }
   .member h3 {
     font-size: var(--text-xl);
